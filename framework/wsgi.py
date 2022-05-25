@@ -1,3 +1,4 @@
+from framework.rend import render
 from framework.request import Request
 from framework.view import View
 
@@ -11,8 +12,9 @@ class Framework:
     def __call__(self, environ, start_response):
         request = Request(environ)
         view = self._get_view(request)
-        start_response('200 OK', [('Content-Type', 'text/html')])
-        return self._get_response(request, view)
+        response = self._get_response(request, view)
+        start_response(response.status, list(response.headers.items()))
+        return [response.body.encode()]
 
     def _get_view(self, request: Request):
         path = request.path
@@ -21,12 +23,10 @@ class Framework:
                 return url.view
             return None
 
-    def _get_response(self,request: Request, view: View):
+    def _get_response(self, request: Request, view: View):
         if hasattr(view, request.method):
             return getattr(view, request.method)(view, request)
-        else:
-            return 'Метод не поддерживается'
-
+        return 'Method not support'
 
 
         
