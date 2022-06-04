@@ -6,3 +6,5 @@ class Url:
 
     path: str
     view: View
+
+

@@ -4,6 +4,7 @@ class Response:
         self.headers = self._set_headers(headers)
         self.body = body
 
+
     def _set_headers(self, user_headers):
         headers = {
             'Content-type': 'text/html'

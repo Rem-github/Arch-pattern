@@ -1,6 +1,5 @@
-from framework.rend import render
 from framework.request import Request
-from framework.view import View
+from framework.view import View, notFound404
 
 
 
@@ -13,21 +12,22 @@ class Framework:
         request = Request(environ)
         view = self._get_view(request)
         response = self._get_response(request, view)
-        start_response(response.status, list(response.headers.items()))
-        return [response.body.encode()]
+        code, body, headers = response
+        start_response(code, headers)
+        return [body.encode('utf-8')]
 
     def _get_view(self, request: Request):
         path = request.path
         for url in self.urls:
-            if url.path == path:
+            if '/' + url.path == path:
                 return url.view
-            return None
+
+
+
 
     def _get_response(self, request: Request, view: View):
         if hasattr(view, request.method):
+            print(f'Method= {request.method}')
             return getattr(view, request.method)(view, request)
-        return 'Method not support'
-
-
-        
-
+        else:
+            return notFound404()

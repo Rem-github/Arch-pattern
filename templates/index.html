@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{ title }}</title>
 </head>
 <body>
-    Hi all!
+    <ul>
+        <li><a href="{{ 'index' }}">Индекс</a></li>
+        <li><a href="{{ 'about' }}">About</a></li>
+        <li><a href="{{ 'contacts' }}">Контакты</a></li>
+    </ul>
+
+    {{body}}
+
 </body>
 </html>
