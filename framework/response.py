@@ -1,5 +1,5 @@
 class Response:
-    def __int__(self, body=None, status='200 OK', headers=None):
+    def __init__(self, body=None, status='200 OK', headers=None):
         self.status = status
         self.headers = self._set_headers(headers)
         self.body = body

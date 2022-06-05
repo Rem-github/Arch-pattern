@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
-    <ul>
-        <li><a href="{{ 'index' }}">Индекс</a></li>
-        <li><a href="{{ 'about' }}">About</a></li>
-        <li><a href="{{ 'contacts' }}">Контакты</a></li>
-    </ul>
-
+{% extends "base.html" %}
+{% block title %} {{title}} {% endblock %}
+{% block style %}
+	{% include "style.html" %}
+{% endblock %}
+{% block main %}
     {{body}}
+{% endblock %}
 
-</body>
-</html>

@@ -9,9 +9,7 @@ from framework.response import Response
 class IndexView(View):
 
     def get(self, request):
-        return '200 OK', render('templates/index.html', title='Main page', body='Главная страница'), \
-               [('Content-Type', 'text/html')]
-
+        return Response(body=render('index.html', title='Main page', body='Главная страница'))
 
     def post(self, request):
         return 'POST SUCCESS'
@@ -19,8 +17,7 @@ class IndexView(View):
 class AboutView(View):
 
     def get(self, request):
-        return '200 OK', render('templates/index.html', title='About page', body='About page'), [('Content-Type', 'text/html')]
-
+        return Response(body=render('index.html', title='About page', body='About page'))
 
     def post(self, request):
         return 'POST SUCCESS'
@@ -28,13 +25,10 @@ class AboutView(View):
 class ContactsView(View):
 
     def get(self, request):
-        return '200 OK', render('templates/contacts.html', title='Contacts page', body='Контакты'), \
-               [('Content-Type', 'text/html')]
-
+        return Response(body=render('contacts.html', title='Contacts page', body='Контакты'))
 
     def post(self, request):
-        return '200 OK', render('templates/contacts.html', title='Contacts page', body='Контакты', data=request.data), \
-               [('Content-Type', 'text/html')]
+        return Response(body=render('contacts.html', title='Contacts page', body='Контакты', data=request.data))
 
 
 urls = [
